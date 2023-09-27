@@ -10,8 +10,9 @@ package dongwangxu.seven;
 
 import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
+import java.util.ArrayList;
 
-public class PackBox{
+public class SausagePackage{
 
     // Class fields
     private String material;
@@ -27,7 +28,7 @@ public class PackBox{
     // CONSTRUCTORS
 
     //Default Constructor - Moses
-    public PackBox(){
+    public SausagePackage(){
         this.material = "Plastic";
         this.length = 10.0;
         this.width = 10.0;
@@ -39,7 +40,7 @@ public class PackBox{
     }
 
     // Partial Constructor 1 (The Box Itself) - Moses
-    public PackBox(String material, double length, double width, double height){
+    public SausagePackage(String material, double length, double width, double height){
         this.material = material;
         this.length = length;
         this.width = width;
@@ -51,7 +52,7 @@ public class PackBox{
     }
 
     // Partial Constructor 2 - Nicholas
-    public PackBox(String material, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray){
+    public SausagePackage(String material, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray){
         this.material = material;
         this.length = 8;
         this.width = 12;
@@ -63,7 +64,7 @@ public class PackBox{
     }
 
     // Full Constructor - Lindsay
-    public PackBox(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray) {
+    public SausagePackage(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray) {
         this.material = material;
         this.length = length;
         this.width = width;
@@ -153,10 +154,13 @@ public class PackBox{
     // Create a sausage - Lindsay
     public void AddSausage(Sausage newSausage){        
         int arrayLen =  this.sausageArray.length;
-        Sausage[] sausageArrayNew = new Sausage[arrayLen + 1];
-        System.arraycopy(sausageArray, 0, sausageArrayNew, 0, arrayLen);
+        //Sausage[] sausageArrayNew = new Sausage[arrayLen + 1];
+        //System.arraycopy(sausageArray, 0, sausageArrayNew, 0, arrayLen);
         sausageArrayNew[arrayLen] = newSausage; 
         this.setSausageArray(sausageArrayNew);
+
+
+    //     this.sausageArray.set()
     }
 
     // Read all sausages - Lindsay
@@ -205,7 +209,7 @@ public class PackBox{
 
     // toString display method - Nicholas
     public String toString(){
-        String s = "PackBox Stats\n";
+        String s = "SausagePackage Stats\n";
         s += "============================\n";
         s += "Material: " + this.material + "\n";
         s += "Length (inches): " + this.length + "\n";
@@ -217,3 +221,4 @@ public class PackBox{
         return s;
     }
 }
+f
