@@ -6,13 +6,18 @@ Glizzy Goblin - Main
 25 September 2023
 */
 
+// 1.	Alter your existing container by copying it and renaming it.
+// 2.	Replace the array with an arrayList container
+// 3.	Perform CRUD operations the same as last assignment but use the functionality of an array list, and make the size DYNAMIC.
+
 package dongwangxu.seven;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import dongwangxu.seven.MeatTypeEnum.MeatType;
-import dongwangxu.seven.Sausage;
-import dongwangxu.seven.PackBox;
+import dongwangxu.seven.Sausage;// DELETE
+import dongwangxu.seven.SausagePackage;
 
 // Note: Moses implemented new shippingStatus field into all aspects
 // Note: arrayCapacity changing commented out due to java array limitations - Moses
@@ -20,12 +25,14 @@ import dongwangxu.seven.PackBox;
 public class Main{
   
   static Scanner scan = new Scanner(System.in);
-  private static PackBox fullPackBox = new PackBox();
+  private static SausagePackage fullSausagePackage = new SausagePackage();
   static int arrayCapacity = 12;
-  private static Sausage[] sausageArray = new Sausage[arrayCapacity];
+  //private static Sausage[] sausageArray = new Sausage[arrayCapacity];
+  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>();
 
   public static void main(String[] args) {
 
+    // Heavily Modified
     // Create sausages to put in sausageArray - Lindsay
     for (int saIndex = 0; saIndex < arrayCapacity; saIndex += 3){
       sausageArray[saIndex] = new Sausage();
@@ -33,8 +40,8 @@ public class Main{
       sausageArray[saIndex + 2] = new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true);
     }
     
-    // Create a PackBox - Lindsay
-    fullPackBox = new PackBox("plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
+    // Create a SausagePackage - Lindsay
+    fullSausagePackage = new SausagePackage("plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
 
     // Clear Screen - Nicholas added all clear screen lines
     System.out.print("\033\143");
@@ -93,14 +100,14 @@ public class Main{
         Sausage createdSausage = InputSausageFields();
         MainAddSausage(createdSausage);
         System.out.println("");
-        fullPackBox.ReadAllSausages();
+        fullSausagePackage.ReadAllSausages();
         showMainMenu();
         break;
       // If 2, read all sausages - Lindsay
       case 2:
         System.out.print("\033\143");
         System.out.println("Selected Read All\n");
-        fullPackBox.ReadAllSausages();
+        fullSausagePackage.ReadAllSausages();
         showMainMenu();
         break;
       // If 3, read a specific sausage - Lindsay
@@ -117,7 +124,7 @@ public class Main{
         Sausage updatedSausage = InputSausageFields();
         System.out.println("");
         MainUpdateSausage(updatedSausage);
-        fullPackBox.ReadAllSausages();
+        fullSausagePackage.ReadAllSausages();
         showMainMenu();
         break;
       // If 5, delete a sausage - Lindsay
@@ -131,7 +138,7 @@ public class Main{
       case 6:
         System.out.print("\033\143");
         System.out.println("Selected Display Box\n");
-        System.out.println(fullPackBox.toString() + "\n");
+        System.out.println(fullSausagePackage.toString() + "\n");
         showMainMenu();
         break;
       // If 0, terminate program - Lindsay
@@ -394,8 +401,7 @@ public class Main{
 
   // Add a sausage (uses sausage created in InputSausageFields()) - Lindsay
   public static void MainAddSausage(Sausage newSausage) {
-    fullPackBox.AddSausage(newSausage);
-    //arrayCapacity++;
+    fullSausagePackage.AddSausage(newSausage);
   }
 
   // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS "NATURAL" INDEX (STARTING FROM 1, NOT 0)
@@ -431,7 +437,7 @@ public class Main{
     } while (readOneNum);
     
     System.out.println("");
-    fullPackBox.ReadOneSausage(selectedSausage);
+    fullSausagePackage.ReadOneSausage(selectedSausage);
   }
 
   // Update a sausage - Lindsay
@@ -464,7 +470,7 @@ public class Main{
       }      
     } while (updateNum);
     
-    fullPackBox.ChangeSausage(selectedSausage, newSausage);
+    fullSausagePackage.ChangeSausage(selectedSausage, newSausage);
   }
 
   // Delete a sausage - Lindsay
@@ -497,7 +503,7 @@ public class Main{
       }      
     } while (deleteNum);
     
-    fullPackBox.DeleteSausage(selectedSausage);
+    fullSausagePackage.DeleteSausage(selectedSausage);
     //arrayCapacity--;
   }
 }
