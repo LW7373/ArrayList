@@ -150,27 +150,27 @@ public class SausagePackage{
 
     // CRUD
 
-    // Create a sausage - Nicolas TBD
+    // Create a sausage - Nicholas 
     public void AddSausage(Sausage newSausage){        
-        int arrayLen =  this.sausageArrayList.length;
+        //int arrayLen =  this.sausageArrayList.size();
         //Sausage[] sausageArrayListNew = new Sausage[arrayLen + 1];
         //System.arraycopy(sausageArrayList, 0, sausageArrayListNew, 0, arrayLen);
-        sausageArrayListNew[arrayLen] = newSausage; 
-        this.setsausageArrayList(sausageArrayListNew);
-
+        //sausageArrayListNew[arrayLen] = newSausage; 
+        //this.setSausageArrayList(sausageArrayListNew);
+        this.sausageArrayList.add(newSausage);
     }
 
-    // Read all sausages - Lindsay
+    // Read all sausages - Lindsay, edited for arraylist by Nicholas
     public void ReadAllSausages(){
-        int arrayLen = this.sausageArrayList.length;
+        int arrayLen = this.sausageArrayList.size();
         for (int i = 0; i < arrayLen; i++){
-            System.out.println("Sausage " + (i + 1) + ": " + sausageArrayList[i]);
+            System.out.println("Sausage " + (i + 1) + ": " + sausageArrayList.get(i));
         }
     }
 
-    // Read a specific sausage - Lindsay
+    // Read a specific sausage - Lindsay, edited for arraylist by Nicholas
     public String ReadOneSausage(int selectedSausage){
-        String readOut = "Sausage " + (selectedSausage) + ": " + sausageArrayList[selectedSausage - 1];
+        String readOut = "Sausage " + (selectedSausage) + ": " + sausageArrayList.get(selectedSausage - 1);
         System.out.println(readOut);
         return readOut;
     }
