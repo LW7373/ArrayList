@@ -3,30 +3,27 @@ Moses Dong, Lindsay Wang, and Nicholas Xu
 Schenk
 AP CSA - Period 7
 Glizzy Goblin - Sausage Container Class
-25 September 2023
+3 October 2023
 */
 
 package dongwangxu.seven;
-
 import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
 import java.util.ArrayList;
 
 public class SausagePackage{
 
-    // Class fields
+    // Class fields - Lindsay and Moses
     private String material;
     private double length;
     private double width;
     private double height;
     private int numSausageLinks;
     private boolean isShipped;
-    // Moses added shippingStatus variable, implemented it into constructors, toString, and Main
-    private String shippingStatus;
-    private Sausage[] sausageArray;
+    private String shippingStatus;// Moses added shippingStatus variable, implemented it into constructors, toString, and Main
+    private ArrayList<Sausage> sausageArrayList;
 
     // CONSTRUCTORS
-
     //Default Constructor - Moses
     public SausagePackage(){
         this.material = "Plastic";
@@ -36,7 +33,7 @@ public class SausagePackage{
         this.numSausageLinks = 10;
         this.isShipped = false;
         this.shippingStatus = "In Warehouse";
-        this.sausageArray = new Sausage[100];//Far greater than necessary, also not mod 3
+        this.sausageArrayList = new ArrayList<Sausage>();
     }
 
     // Partial Constructor 1 (The Box Itself) - Moses
@@ -48,23 +45,23 @@ public class SausagePackage{
         this.numSausageLinks = 10;
         this.isShipped = false;
         this.shippingStatus = "In Warehouse";
-        this.sausageArray = new Sausage[100];
+        this.sausageArrayList = new ArrayList<Sausage>();
     }
 
     // Partial Constructor 2 - Nicholas
-    public SausagePackage(String material, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray){
+    public SausagePackage(String material, int numSausageLinks, boolean isShipped, String shippingStatus, ArrayList<Sausage> sausageArrayList){
         this.material = material;
-        this.length = 8;
-        this.width = 12;
-        this.height = 9;
+        this.length = 10.0;
+        this.width = 10.0;
+        this.height = 10.0;
         this.numSausageLinks = numSausageLinks;
         this.isShipped = isShipped;
         this.shippingStatus = shippingStatus;
-        this.sausageArray = sausageArray;
+        this.sausageArrayList = sausageArrayList;
     }
 
     // Full Constructor - Lindsay
-    public SausagePackage(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, Sausage[] sausageArray) {
+    public SausagePackage(String material, double length, double width, double height, int numSausageLinks, boolean isShipped, String shippingStatus, ArrayList<Sausage> sausageArrayList) {
         this.material = material;
         this.length = length;
         this.width = width;
@@ -72,7 +69,7 @@ public class SausagePackage{
         this.numSausageLinks = numSausageLinks;
         this.isShipped = isShipped;
         this.shippingStatus = shippingStatus;
-        this.sausageArray = sausageArray;
+        this.sausageArrayList = sausageArrayList;
     }
 
     // GETTERS AND SETTERS - Nicholas
@@ -123,7 +120,7 @@ public class SausagePackage{
     }
 
     // isShipped
-    public boolean isShipped(){ // Returned to normal from isFull
+    public boolean isShipped(){ 
         return this.isShipped;
     }
 
@@ -131,6 +128,7 @@ public class SausagePackage{
         this.isShipped = isShipped;
     }
 
+    //Start Moses Work
     // shippingStatus
     public String getShippingStatus(){ // Changed respectively - Moses
         return this.shippingStatus;
@@ -140,71 +138,59 @@ public class SausagePackage{
         this.shippingStatus = shippingStatus;
     }
 
-    // sausageArray
-    public Sausage[] getSausageArray(){// Returned to normal - Moses
-        return this.sausageArray;
+    // sausageArrayList
+    public ArrayList<Sausage> getSausageArrayList(){// Returned to normal - Moses
+        return this.sausageArrayList;
     }
 
-    public void setSausageArray(Sausage[] sausageArray){
-        this.sausageArray = sausageArray;
+    public void setSausageArrayList(ArrayList<Sausage> sausageArrayList){
+        this.sausageArrayList = sausageArrayList;
     }
+    //End Moses Work
 
     // CRUD
 
-    // Create a sausage - Lindsay
+    // Create a sausage - Nicolas TBD
     public void AddSausage(Sausage newSausage){        
-        int arrayLen =  this.sausageArray.length;
-        //Sausage[] sausageArrayNew = new Sausage[arrayLen + 1];
-        //System.arraycopy(sausageArray, 0, sausageArrayNew, 0, arrayLen);
-        sausageArrayNew[arrayLen] = newSausage; 
-        this.setSausageArray(sausageArrayNew);
+        int arrayLen =  this.sausageArrayList.length;
+        //Sausage[] sausageArrayListNew = new Sausage[arrayLen + 1];
+        //System.arraycopy(sausageArrayList, 0, sausageArrayListNew, 0, arrayLen);
+        sausageArrayListNew[arrayLen] = newSausage; 
+        this.setsausageArrayList(sausageArrayListNew);
 
-
-    //     this.sausageArray.set()
     }
 
     // Read all sausages - Lindsay
     public void ReadAllSausages(){
-        int arrayLen = this.sausageArray.length;
+        int arrayLen = this.sausageArrayList.length;
         for (int i = 0; i < arrayLen; i++){
-            System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
+            System.out.println("Sausage " + (i + 1) + ": " + sausageArrayList[i]);
         }
     }
 
-    // Read a specific sausage - Lindsay, modified by Moses
+    // Read a specific sausage - Lindsay
     public String ReadOneSausage(int selectedSausage){
-        String readOut = "Sausage " + (selectedSausage) + ": " + sausageArray[selectedSausage - 1];
+        String readOut = "Sausage " + (selectedSausage) + ": " + sausageArrayList[selectedSausage - 1];
         System.out.println(readOut);
         return readOut;
     }
 
-    // Update a sausage - Lindsay
+    // Update a sausage - Moses
     public void ChangeSausage(int selectedSausage, Sausage newSausage){
-        this.sausageArray[selectedSausage - 1] = newSausage;
-        this.setSausageArray(sausageArray);
-        System.out.println("\nUpdated Sausage " + selectedSausage + "\n");
+        this.sausageArrayList.set(selectedSausage - 1, newSausage);
+        System.out.println("\nUpdated Sausage of Index: " + selectedSausage + "\n");
     }
 
-    // Delete a sausage - Lindsay
-    public void DeleteSausage(int selectedSausage){
-        int arrayLen =  this.sausageArray.length;
-        // Original Size Changing
-        // Sausage[] sausageArrayNew = new Sausage[arrayLen - 1];//Not necessary but cool :)
-        // for(int i = 0, k = 0; i < arrayLen; i++){
-        //     if (i != (selectedSausage - 1)){
-        //         sausageArrayNew[k] = this.sausageArray[i];
-        //         k++;
-        //     }
-        // }
-        // this.setSausageArray(sausageArrayNew);
-        
-        //Modification by Moses, disables changing array size for better or for worse
-        this.sausageArray[selectedSausage - 1] = new Sausage();//Use default
+    // Delete a sausage - Moses
+    public void DeleteSausage(int selectedSausage){     
+        this.sausageArrayList.get(1);
+        this.sausageArrayList.remove(selectedSausage);
+        System.out.println("\nDeleted Sausage of Index: " + selectedSausage + "\n");
 
-        System.out.println("\nDeleted Sausage " + selectedSausage + "\n");
-        for (int i = 0; i < arrayLen - 1; i++){
-            System.out.println("Sausage " + (i + 1) + ": " + sausageArray[i]);
-        }
+        //Debugging
+        // for (int i = 0; i < arrayLen - 1; i++){
+        //     System.out.println("Sausage " + (i + 1) + ": " + sausageArrayList[i]);
+        // }
     }
 
     // toString display method - Nicholas
@@ -221,4 +207,3 @@ public class SausagePackage{
         return s;
     }
 }
-f
