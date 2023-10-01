@@ -3,7 +3,7 @@ Moses Dong, Lindsay Wang, and Nicholas Xu
 Schenk
 AP CSA - Period 7
 Glizzy Goblin - Main
-25 September 2023
+3 October 2023
 */
 
 // 1.	Alter your existing container by copying it and renaming it.
@@ -11,12 +11,10 @@ Glizzy Goblin - Main
 // 3.	Perform CRUD operations the same as last assignment but use the functionality of an array list, and make the size DYNAMIC.
 
 package dongwangxu.seven;
-
 import java.util.Scanner;
 import java.util.ArrayList;
-
 import dongwangxu.seven.MeatTypeEnum.MeatType;
-import dongwangxu.seven.Sausage;// DELETE
+import dongwangxu.seven.Sausage;
 import dongwangxu.seven.SausagePackage;
 
 // Note: Moses implemented new shippingStatus field into all aspects
@@ -26,22 +24,19 @@ public class Main{
   
   static Scanner scan = new Scanner(System.in);
   private static SausagePackage fullSausagePackage = new SausagePackage();
-  static int arrayCapacity = 12;
-  //private static Sausage[] sausageArray = new Sausage[arrayCapacity];
-  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>();
+  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>();//Limited Use
 
+  // Main Method - Moses (Lindsay references kept around)
   public static void main(String[] args) {
-
-    // Heavily Modified
+    // Heavily Modified from Original
     // Create sausages to put in sausageArray - Lindsay
-    for (int saIndex = 0; saIndex < arrayCapacity; saIndex += 3){
-      sausageArray[saIndex] = new Sausage();
-      sausageArray[saIndex + 1] = new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true);
-      sausageArray[saIndex + 2] = new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true);
+    for (int saIndex = 0; saIndex < 15; saIndex += 3){
+      sausageArray.set(saIndex, new Sausage());
+      sausageArray.set(saIndex + 1, new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true));
+      sausageArray.set(saIndex + 2, new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true));
     }
-    
-    // Create a SausagePackage - Lindsay
-    fullSausagePackage = new SausagePackage("plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
+    // Create the SausagePackage - Lindsay
+    fullSausagePackage = new SausagePackage("Plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
 
     // Clear Screen - Nicholas added all clear screen lines
     System.out.print("\033\143");
@@ -51,7 +46,7 @@ public class Main{
     scan.close();
   }
 
-  // Main Menu System - Lindsay
+  // Main Menu System - Moses (Lindsay references kept around)
   public static void showMainMenu() {
     System.out.println("--- MAIN MENU ---");
     System.out.println("1. Add Sausage");
@@ -77,7 +72,7 @@ public class Main{
         }      
         option = scan.nextInt();
         // Validate number range
-        if ((option > 6) || (option < 0)){
+        if (!((option >= 0)&&(option <= 6))){
           System.out.print("Enter your Choice: ");          
           nNum = true;
         }else{
@@ -149,10 +144,11 @@ public class Main{
         break;
       // Backup for if the user inputs an invalid option and try-catches don't work
       default:
-        System.out.println("Invalid option!");
+        System.out.println("Invalid Option");
         showMainMenu();
     }
   }
+
 
   // Allows user to input sausage fields (used for create and update) - Lindsay
   public static Sausage InputSausageFields() {
@@ -399,12 +395,14 @@ public class Main{
     return newSausage;
   }
 
+  // CRUD
+
+  // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS "NATURAL" INDEX (STARTING FROM 1, NOT 0)
+
   // Add a sausage (uses sausage created in InputSausageFields()) - Lindsay
   public static void MainAddSausage(Sausage newSausage) {
     fullSausagePackage.AddSausage(newSausage);
   }
-
-  // NOTE FOR ALL METHODS BELOW: USER-INPUTTED SAUSAGE NUMBER IS "NATURAL" INDEX (STARTING FROM 1, NOT 0)
 
   // Read a specific sausage - Lindsay
   public static void MainReadOneSausage() {
@@ -440,7 +438,7 @@ public class Main{
     fullSausagePackage.ReadOneSausage(selectedSausage);
   }
 
-  // Update a sausage - Lindsay
+  // Update a sausage - Nicolas TBD (Please put in if you are already done, thanks - Moses)
   public static void MainUpdateSausage(Sausage newSausage){
     int selectedSausage = 0;
     System.out.print("Which sausage would you like to update? ");
@@ -473,37 +471,36 @@ public class Main{
     fullSausagePackage.ChangeSausage(selectedSausage, newSausage);
   }
 
-  // Delete a sausage - Lindsay
+  // Delete a sausage - Moses
   public static void MainDeleteSausage() {
     int selectedSausage = 0;
+    int arrayLength = fullSausagePackage.getSausageArrayList().size();
     System.out.print("Which sausage would you like to delete? ");
-    boolean deleteNum;
-    // Valid input must be a number    
-    do { 
+    boolean deleteIndex = true;
+    do { // Valid input must be a number    
       try{
         // Validate non-number
         if (!scan.hasNextInt()){
           System.out.print("Which sausage would you like to delete? ");
           scan.next();
-          deleteNum = true;
+          deleteIndex = true;
         }      
         selectedSausage = scan.nextInt();
         // Validate number range
-        if ((selectedSausage > arrayCapacity) || (selectedSausage <=0)){
+        if (!((selectedSausage > arrayLength) || (selectedSausage <= 0))){
           System.out.print("Which sausage would you like to delete? ");
-          deleteNum = true;
+          deleteIndex = true;
         } else {
-          deleteNum = false;
+          deleteIndex = false;
         }
+
       }
       catch(Exception e){
         System.out.print("Which sausage would you like to delete? ");
         scan.next();
-        deleteNum = true;
+        deleteIndex = true;
       }      
-    } while (deleteNum);
-    
+    } while (deleteIndex);
     fullSausagePackage.DeleteSausage(selectedSausage);
-    //arrayCapacity--;
   }
 }
