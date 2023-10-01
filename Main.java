@@ -404,9 +404,11 @@ public class Main{
     fullSausagePackage.AddSausage(newSausage);
   }
 
-  // Read a specific sausage - Lindsay
+ 
+  // Read a specific sausage - Lindsay, edited to accomodate arrayList by Nicholas
   public static void MainReadOneSausage() {
     int selectedSausage = 0;
+    int arrayLength = fullSausagePackage.getSausageArrayList().size();
     System.out.print("Which sausage would you like to view? ");
     boolean readOneNum;
     // Valid input must be a number    
@@ -420,7 +422,7 @@ public class Main{
         }      
         selectedSausage = scan.nextInt();
         // Validate number range
-        if ((selectedSausage > arrayCapacity) || (selectedSausage <= 0)){
+        if (!((selectedSausage > arrayLength) || (selectedSausage <= 0))){
           System.out.print("Which sausage would you like to view? ");
           readOneNum = true;
         } else {
@@ -438,9 +440,10 @@ public class Main{
     fullSausagePackage.ReadOneSausage(selectedSausage);
   }
 
-  // Update a sausage - Nicolas TBD (Please put in if you are already done, thanks - Moses)
+  // Update a sausage - Nicholas
   public static void MainUpdateSausage(Sausage newSausage){
     int selectedSausage = 0;
+    int arrayLength = fullSausagePackage.getSausageArrayList().size();
     System.out.print("Which sausage would you like to update? ");
     boolean updateNum;
     // Valid input must be a number    
@@ -454,7 +457,7 @@ public class Main{
         }      
         selectedSausage = scan.nextInt();
         // Validate number range
-        if ((selectedSausage > arrayCapacity) || (selectedSausage <= 0)){
+        if (!((selectedSausage > arrayLength) || (selectedSausage <= 0))){
           System.out.print("Which sausage would you like to update? ");
           updateNum = true;
         } else {
@@ -470,7 +473,7 @@ public class Main{
     
     fullSausagePackage.ChangeSausage(selectedSausage, newSausage);
   }
-
+  
   // Delete a sausage - Moses
   public static void MainDeleteSausage() {
     int selectedSausage = 0;
