@@ -24,16 +24,17 @@ public class Main{
   
   static Scanner scan = new Scanner(System.in);
   private static SausagePackage fullSausagePackage = new SausagePackage();
-  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>();//Limited Use
+  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>(); //Limited Use
 
   // Main Method - Moses (Lindsay references kept around)
   public static void main(String[] args) {
     // Heavily Modified from Original
     // Create sausages to put in sausageArray - Lindsay
-    for (int saIndex = 0; saIndex < 15; saIndex += 3){
-      sausageArray.set(saIndex, new Sausage());
-      sausageArray.set(saIndex + 1, new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true));
-      sausageArray.set(saIndex + 2, new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true));
+    sausageArray.ensureCapacity(12);
+    for (int saIndex = 0; saIndex < 12; saIndex += 3){
+      sausageArray.add(saIndex, new Sausage());
+      sausageArray.add(saIndex + 1, new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true));
+      sausageArray.add(saIndex + 2, new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true));
     }
     // Create the SausagePackage - Lindsay
     fullSausagePackage = new SausagePackage("Plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
@@ -405,7 +406,7 @@ public class Main{
   }
 
  
-  // Read a specific sausage - Lindsay, edited to accomodate arrayList by Nicholas
+  // Read a specific sausage - arrayList by Nicholas, structure by Lindsay
   public static void MainReadOneSausage() {
     int selectedSausage = 0;
     int arrayLength = fullSausagePackage.getSausageArrayList().size();
@@ -422,7 +423,7 @@ public class Main{
         }      
         selectedSausage = scan.nextInt();
         // Validate number range
-        if (!((selectedSausage > arrayLength) || (selectedSausage <= 0))){
+        if ((selectedSausage > arrayLength) || (selectedSausage <= 0)){ // Lindsay debugged by checking/changing parameters
           System.out.print("Which sausage would you like to view? ");
           readOneNum = true;
         } else {
@@ -440,7 +441,7 @@ public class Main{
     fullSausagePackage.ReadOneSausage(selectedSausage);
   }
 
-  // Update a sausage - Nicholas
+  // Update a sausage - arraylist by Nicholas, structure by Lindsay
   public static void MainUpdateSausage(Sausage newSausage){
     int selectedSausage = 0;
     int arrayLength = fullSausagePackage.getSausageArrayList().size();
@@ -457,7 +458,7 @@ public class Main{
         }      
         selectedSausage = scan.nextInt();
         // Validate number range
-        if (!((selectedSausage > arrayLength) || (selectedSausage <= 0))){
+        if ((selectedSausage > arrayLength) || (selectedSausage <= 0)){ // Lindsay debugged by checking/changing parameters
           System.out.print("Which sausage would you like to update? ");
           updateNum = true;
         } else {
@@ -474,12 +475,13 @@ public class Main{
     fullSausagePackage.ChangeSausage(selectedSausage, newSausage);
   }
   
-  // Delete a sausage - Moses
+  // Delete a sausage - arraylist by Moses, structure by Lindsay
   public static void MainDeleteSausage() {
     int selectedSausage = 0;
     int arrayLength = fullSausagePackage.getSausageArrayList().size();
     System.out.print("Which sausage would you like to delete? ");
-    boolean deleteIndex = true;
+
+    boolean deleteIndex;
     do { // Valid input must be a number    
       try{
         // Validate non-number
@@ -490,13 +492,12 @@ public class Main{
         }      
         selectedSausage = scan.nextInt();
         // Validate number range
-        if (!((selectedSausage > arrayLength) || (selectedSausage <= 0))){
+        if ((selectedSausage > arrayLength) || (selectedSausage <= 0)){ // Lindsay debugged by checking/changing parameters
           System.out.print("Which sausage would you like to delete? ");
           deleteIndex = true;
         } else {
           deleteIndex = false;
         }
-
       }
       catch(Exception e){
         System.out.print("Which sausage would you like to delete? ");
@@ -504,6 +505,7 @@ public class Main{
         deleteIndex = true;
       }      
     } while (deleteIndex);
+
     fullSausagePackage.DeleteSausage(selectedSausage);
   }
 }
