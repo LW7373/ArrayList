@@ -20,11 +20,12 @@ public class SausagePackage{
     private double height;
     private int numSausageLinks;
     private boolean isShipped;
-    private String shippingStatus;// Moses added shippingStatus variable, implemented it into constructors, toString, and Main
+    private String shippingStatus; // Moses added shippingStatus variable, implemented it into constructors, toString, and Main
     private ArrayList<Sausage> sausageArrayList;
 
     // CONSTRUCTORS
-    //Default Constructor - Moses
+
+    // Default Constructor - Moses
     public SausagePackage(){
         this.material = "Plastic";
         this.length = 10.0;
@@ -128,7 +129,7 @@ public class SausagePackage{
         this.isShipped = isShipped;
     }
 
-    //Start Moses Work
+    // Start Moses Work
     // shippingStatus
     public String getShippingStatus(){ // Changed respectively - Moses
         return this.shippingStatus;
@@ -146,21 +147,16 @@ public class SausagePackage{
     public void setSausageArrayList(ArrayList<Sausage> sausageArrayList){
         this.sausageArrayList = sausageArrayList;
     }
-    //End Moses Work
+    // End Moses Work
 
     // CRUD
 
-    // Create a sausage - Nicholas 
-    public void AddSausage(Sausage newSausage){        
-        //int arrayLen =  this.sausageArrayList.size();
-        //Sausage[] sausageArrayListNew = new Sausage[arrayLen + 1];
-        //System.arraycopy(sausageArrayList, 0, sausageArrayListNew, 0, arrayLen);
-        //sausageArrayListNew[arrayLen] = newSausage; 
-        //this.setSausageArrayList(sausageArrayListNew);
+    // Create a sausage - Nicholas
+    public void AddSausage(Sausage newSausage){
         this.sausageArrayList.add(newSausage);
     }
 
-    // Read all sausages - Lindsay, edited for arraylist by Nicholas
+    // Read all sausages - arraylist by Nicholas, structure by Lindsay
     public void ReadAllSausages(){
         int arrayLen = this.sausageArrayList.size();
         for (int i = 0; i < arrayLen; i++){
@@ -168,7 +164,7 @@ public class SausagePackage{
         }
     }
 
-    // Read a specific sausage - Lindsay, edited for arraylist by Nicholas
+    // Read a specific sausage - arraylist by Nicholas, structure by Lindsay
     public String ReadOneSausage(int selectedSausage){
         String readOut = "Sausage " + (selectedSausage) + ": " + sausageArrayList.get(selectedSausage - 1);
         System.out.println(readOut);
@@ -178,24 +174,18 @@ public class SausagePackage{
     // Update a sausage - Moses
     public void ChangeSausage(int selectedSausage, Sausage newSausage){
         this.sausageArrayList.set(selectedSausage - 1, newSausage);
-        System.out.println("\nUpdated Sausage of Index: " + selectedSausage + "\n");
+        System.out.println("\nUpdated Sausage " + selectedSausage + "\n");
     }
 
     // Delete a sausage - Moses
     public void DeleteSausage(int selectedSausage){     
-        this.sausageArrayList.get(1);
-        this.sausageArrayList.remove(selectedSausage);
-        System.out.println("\nDeleted Sausage of Index: " + selectedSausage + "\n");
-
-        //Debugging
-        // for (int i = 0; i < arrayLen - 1; i++){
-        //     System.out.println("Sausage " + (i + 1) + ": " + sausageArrayList[i]);
-        // }
+        this.sausageArrayList.remove(selectedSausage - 1); // Lindsay debugged by editing index
+        System.out.println("\nDeleted Sausage " + selectedSausage + "\n");
     }
 
     // toString display method - Nicholas
     public String toString(){
-        String s = "SausagePackage Stats\n";
+        String s = "Package Stats\n";
         s += "============================\n";
         s += "Material: " + this.material + "\n";
         s += "Length (inches): " + this.length + "\n";
@@ -203,7 +193,7 @@ public class SausagePackage{
         s += "Height (inches): " + this.height + "\n";
         s += "NumSausageLinks: " + this.numSausageLinks + "\n";
         s += "Shipped? " + this.isShipped + "\n";
-        s += "Shipping Status: " + this.shippingStatus; //Small Modification - Moses
+        s += "Shipping Status: " + this.shippingStatus; // Small Modification - Moses
         return s;
     }
 }
