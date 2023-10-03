@@ -12,6 +12,6 @@ public class MeatTypeEnum {
     
     // Create enum for meat type
     public enum MeatType{
-        beef, pork, chicken, fish, turkey, vegan, lamb, mystery, 
+        beef, pork, chicken, fish, turkey, vegan, lamb, mystery 
     }
 }
