@@ -19,14 +19,14 @@ public class Main{
   
   static Scanner scan = new Scanner(System.in);
   private static SausagePackage fullSausagePackage = new SausagePackage();
-  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>(); //Limited Use
+  private static ArrayList<Sausage> sausageArray = new ArrayList<Sausage>(); 
 
   // Main Method - Moses (Lindsay references kept around)
   public static void main(String[] args) {
     // Heavily Modified from Original
     // Create sausages to put in sausageArray - Lindsay
     sausageArray.ensureCapacity(12);
-    for (int saIndex = 0; saIndex < 1; saIndex ++ ){
+    for (int saIndex = 0; saIndex < 1; saIndex++){
       sausageArray.add(saIndex, new Sausage());
       //nicholas added these for the sake of dietary restriction filter testing
       sausageArray.add(saIndex + 1, new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true));
@@ -562,26 +562,26 @@ public class Main{
         case 1:
             for (Sausage sausage : sausageArray) {
                 if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
-                    System.out.println(sausage);
+                    System.out.println(sausage.toString());
                 }
             }
                 
         case 2:
             for (Sausage sausage : sausageArray) {
                 if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
-                    System.out.println(sausage);
+                    System.out.println(sausage.toString());
                 }
             }
         case 3:
             for (Sausage sausage : sausageArray) {
                 if ((sausage.getMeatType() == MeatType.vegan)) {
-                    System.out.println(sausage);
+                    System.out.println(sausage.toString());
                 }
             }
         case 4:
             for (Sausage sausage : sausageArray) {
                 if ((sausage.getMeatType() == MeatType.vegan) || (sausage.getMeatType() == MeatType.fish)) {
-                    System.out.println(sausage);
+                    System.out.println(sausage.toString());
                 }
             }
         }
