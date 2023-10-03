@@ -9,7 +9,9 @@ Glizzy Goblin - Sausage Container Class
 package dongwangxu.seven;
 import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
+import dongwangxu.seven.Main;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SausagePackage{
 
@@ -22,7 +24,7 @@ public class SausagePackage{
     private boolean isShipped;
     private String shippingStatus; // Moses added shippingStatus variable, implemented it into constructors, toString, and Main
     private ArrayList<Sausage> sausageArrayList;
-
+    private static Scanner scan = new Scanner(System.in);
     // CONSTRUCTORS
 
     // Default Constructor - Moses
@@ -196,4 +198,50 @@ public class SausagePackage{
         s += "Shipping Status: " + this.shippingStatus; // Small Modification - Moses
         return s;
     }
+
+    // Meticulous Read/Update Methods - Moses
+    public void manualSausageUpdate(){
+        for (int a = 0; a < sausageArrayList.size(); a++){
+            System.out.println("Sausage " + (a + 1) + ": ");
+            System.out.println(sausageArrayList.get(a).toString());
+            System.out.println("Would you like to modify (y/n)?");
+            try{
+                var userChoice = scan.next();
+                if ((userChoice == "y")||(userChoice == "Y")){//Yes
+                    Sausage finalSausage = Main.InputSausageFields();
+                    this.ChangeSausage(a + 1, finalSausage);
+                } else {//No
+                    continue;
+                }
+            }
+            catch(Exception e){//Invalid is default
+                continue;
+            }
+            System.out.println("Would you like to insert an entry before (y/n)?");
+            try{
+                var userChoice = scan.next();
+                if ((userChoice == "y")||(userChoice == "Y")){//Yes
+                    Sausage finalSausage = Main.InputSausageFields();
+                    this.sausageArrayList.add(a, finalSausage);
+                } else {//No
+                    continue;
+                }
+            }
+            catch(Exception e){//Invalid is default
+                continue;
+            }
+            System.out.println("\n");
+        }
+    }
+
+    // Full Display Method - Moses
+    public void sausageFullDisplay(){
+        for (int a = 0; a < sausageArrayList.size(); a++){
+            System.out.println("Sausage " + (a + 1) + ": ");
+            System.out.println(sausageArrayList.get(a).toString());
+            System.out.println("\n");
+        }
+    }
+
+
 }
