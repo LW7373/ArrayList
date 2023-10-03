@@ -6,10 +6,6 @@ Glizzy Goblin - Main
 3 October 2023
 */
 
-// 1.	Alter your existing container by copying it and renaming it.
-// 2.	Replace the array with an arrayList container
-// 3.	Perform CRUD operations the same as last assignment but use the functionality of an array list, and make the size DYNAMIC.
-
 package dongwangxu.seven;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -18,7 +14,6 @@ import dongwangxu.seven.Sausage;
 import dongwangxu.seven.SausagePackage;
 
 // Note: Moses implemented new shippingStatus field into all aspects
-// Note: arrayCapacity changing commented out due to java array limitations - Moses
 
 public class Main{
   
@@ -68,6 +63,7 @@ public class Main{
     System.out.println("5. Delete Sausage");
     System.out.println("6. Display Other Box Stats");
     System.out.println("7. Read Sausages Aligning With A Particular Diet");
+    System.out.println("8. Update All Sausages (Manual)");
     System.out.println("0. Exit");
 
     // Get user input - Lindsay
@@ -149,7 +145,7 @@ public class Main{
         System.out.println(fullSausagePackage.toString() + "\n");
         showMainMenu();
         break;
-      // If 7, display compatable sausages
+      // If 7, display compatible sausages
       //nicholas 
       case 7:
         System.out.print("\033\143");
@@ -157,6 +153,11 @@ public class Main{
         MainFilterDiet();
         break;
       //nicholas end
+      // If 8, Special (Manual) Update - Moses
+      case 8:
+        System.out.print("\033\143");
+        System.out.println("Sausages in Alignment With Diet\n");
+        fullSausagePackage.manualSausageUpdate();
       // If 0, terminate program - Lindsay
       case 0:
         System.out.print("\033\143");
