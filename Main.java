@@ -31,11 +31,22 @@ public class Main{
     // Heavily Modified from Original
     // Create sausages to put in sausageArray - Lindsay
     sausageArray.ensureCapacity(12);
-    for (int saIndex = 0; saIndex < 12; saIndex += 3){
+    for (int saIndex = 0; saIndex < 1; saIndex ++ ){
       sausageArray.add(saIndex, new Sausage());
-      sausageArray.add(saIndex + 1, new Sausage("Cheery Chump Chick", MeatType.chicken, 1.00, 3.99, 5.0, 80, true));
-      sausageArray.add(saIndex + 2, new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true));
+      //nicholas added these for the sake of dietary restriction filter testing
+      sausageArray.add(saIndex + 1, new Sausage("Perfect Piggy Pizzazz", MeatType.pork, 1.50, 4.49, 4.5, 75, true));
+      sausageArray.add(saIndex + 2, new Sausage("Vegan Sausage Delight", MeatType.vegan, 1.75, 5.49, 4.75, 40, true));
+      sausageArray.add(saIndex + 3, new Sausage("Fish Fiend Fingers", MeatType.fish, 1.25, 4.29, 4.0, 50, true));
+      sausageArray.add(saIndex + 4, new Sausage("Beefy Delight", MeatType.beef, 1.60, 4.99, 4.2, 60, true));
+      sausageArray.add(saIndex + 5, new Sausage("Chicken Sensation", MeatType.chicken, 1.45, 4.79, 4.3, 70, true));
+      sausageArray.add(saIndex + 6, new Sausage("Tasty Turkey Twist", MeatType.turkey, 1.55, 5.19, 4.4, 45, true));
+      sausageArray.add(saIndex + 7, new Sausage("Luscious Lamb Lovers", MeatType.lamb, 1.70, 5.99, 4.7, 55, true));
+      sausageArray.add(saIndex + 8, new Sausage("Mystery Meat Madness", MeatType.mystery, 1.80, 6.29, 4.8, 30, true));
+      sausageArray.add(saIndex + 9, new Sausage("Porky Paradise", MeatType.pork, 1.70, 5.49, 4.6, 65, true));
+      sausageArray.add(saIndex + 10, new Sausage("Chicken Charm", MeatType.chicken, 1.45, 4.69, 4.1, 80, true));
+      sausageArray.add(saIndex + 11, new Sausage("Fishy Flavor Fiesta", MeatType.fish, 1.30, 4.39, 4.5, 45, true));
     }
+
     // Create the SausagePackage - Lindsay
     fullSausagePackage = new SausagePackage("Plastic", 25.5, 3.5, 40.0, 12, false, "In Warehouse", sausageArray);
 
@@ -56,6 +67,7 @@ public class Main{
     System.out.println("4. Update Sausage");
     System.out.println("5. Delete Sausage");
     System.out.println("6. Display Other Box Stats");
+    System.out.println("7. Read Sausages Aligning With A Particular Diet");
     System.out.println("0. Exit");
 
     // Get user input - Lindsay
@@ -73,7 +85,7 @@ public class Main{
         }      
         option = scan.nextInt();
         // Validate number range
-        if (!((option >= 0)&&(option <= 6))){
+        if (!((option >= 0)&&(option <= 7))){
           System.out.print("Enter your Choice: ");          
           nNum = true;
         }else{
@@ -137,6 +149,14 @@ public class Main{
         System.out.println(fullSausagePackage.toString() + "\n");
         showMainMenu();
         break;
+      // If 7, display compatable sausages
+      //nicholas 
+      case 7:
+        System.out.print("\033\143");
+        System.out.println("Sausages in Alignment With Diet\n");
+        MainFilterDiet();
+        break;
+      //nicholas end
       // If 0, terminate program - Lindsay
       case 0:
         System.out.print("\033\143");
@@ -172,7 +192,7 @@ public class Main{
     // Do whiles used for catching out-of-bounds values - Lindsay
 
     // SMeatType - Lindsay
-    System.out.print("Meat Filling (1. beef, 2. pork, 3. chicken, 4. venison, 5. turkey, 6. lamb, 7. vegan, 8. mystery): ");
+    System.out.print("Meat Filling (1. beef, 2. pork, 3. chicken, 4. fish, 5. turkey, 6. lamb, 7. vegan, 8. mystery): ");
     int switchFillingVal = 0;
     boolean nNum;
     // Valid input must be a number    
@@ -212,7 +232,7 @@ public class Main{
         SMeatType = MeatType.chicken;
         break;
       case 4:
-        SMeatType = MeatType.venison;
+        SMeatType = MeatType.fish;
         break;
       case 5:
         SMeatType = MeatType.turkey;
@@ -508,4 +528,62 @@ public class Main{
 
     fullSausagePackage.DeleteSausage(selectedSausage);
   }
+
+  //crud end
+
+  //extra functions 
+  //MainFilterDiet - Nicholas 
+  public static void MainFilterDiet(){
+    System.out.print("Which of the following dietary restrictions would you like to apply? (1. kosher, 2. halal, 3. vegan, 4. pescitarian): ");
+    int dietVal = 0;
+    boolean dietBool;
+    do{
+      try{
+        if(!scan.hasNextInt()){
+          System.out.print("Dietary Restriction: ");
+          scan.next();
+        }
+        dietVal = scan.nextInt();
+        if ((dietVal > 4) || (dietVal <= 0)){
+          System.out.print("Dietary Restriction: ");          
+          dietBool = true;
+        } else {
+          dietBool = false;
+        }
+      }
+      catch(Exception e){
+        System.out.print("Dietary Restriction: ");     
+        scan.next(); 
+        dietBool = true;
+      }      
+    } while (dietBool); 
+    switch (dietVal){
+        case 1:
+            for (Sausage sausage : sausageArray) {
+                if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
+                    System.out.println(sausage);
+                }
+            }
+                
+        case 2:
+            for (Sausage sausage : sausageArray) {
+                if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
+                    System.out.println(sausage);
+                }
+            }
+        case 3:
+            for (Sausage sausage : sausageArray) {
+                if ((sausage.getMeatType() == MeatType.vegan)) {
+                    System.out.println(sausage);
+                }
+            }
+        case 4:
+            for (Sausage sausage : sausageArray) {
+                if ((sausage.getMeatType() == MeatType.vegan) || (sausage.getMeatType() == MeatType.fish)) {
+                    System.out.println(sausage);
+                }
+            }
+        }
+  }
+  
 }
