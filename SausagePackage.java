@@ -9,7 +9,6 @@ Glizzy Goblin - Sausage Container Class
 package dongwangxu.seven;
 import dongwangxu.seven.MeatTypeEnum.MeatType;
 import dongwangxu.seven.Sausage;
-import dongwangxu.seven.Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,7 +23,8 @@ public class SausagePackage{
     private boolean isShipped;
     private String shippingStatus; // Moses added shippingStatus variable, implemented it into constructors, toString, and Main
     private ArrayList<Sausage> sausageArrayList;
-    private static Scanner scan = new Scanner(System.in);
+    private static Scanner scan = new Scanner(System.in); // Added by Moses
+
     // CONSTRUCTORS
 
     // Default Constructor - Moses
@@ -156,21 +156,21 @@ public class SausagePackage{
     // Create a sausage - Nicholas
     public void AddSausage(Sausage newSausage){
         this.sausageArrayList.add(newSausage);
+        System.out.println("Added Sausage " + "\n");
+
     }
 
     // Read all sausages - arraylist by Nicholas, structure by Lindsay
     public void ReadAllSausages(){
         int arrayLen = this.sausageArrayList.size();
         for (int i = 0; i < arrayLen; i++){
-            System.out.println("Sausage " + (i + 1) + ": " + sausageArrayList.get(i));
+            System.out.println("\nSausage " + (i + 1) + ": " + sausageArrayList.get(i));
         }
     }
 
     // Read a specific sausage - arraylist by Nicholas, structure by Lindsay
-    public String ReadOneSausage(int selectedSausage){
-        String readOut = "Sausage " + (selectedSausage) + ": " + sausageArrayList.get(selectedSausage - 1);
-        System.out.println(readOut);
-        return readOut;
+    public void ReadOneSausage(int selectedSausage){
+        System.out.println("Sausage " + (selectedSausage) + ": " + sausageArrayList.get(selectedSausage - 1));
     }
 
     // Update a sausage - Moses
@@ -200,35 +200,36 @@ public class SausagePackage{
     }
 
     // Meticulous Read/Update Methods - Moses
-    public void manualSausageUpdate(){
+    public void ManualSausageUpdate(){
         for (int a = 0; a < sausageArrayList.size(); a++){
             System.out.println("Sausage " + (a + 1) + ": ");
             System.out.println(sausageArrayList.get(a).toString());
-            System.out.println("Would you like to modify (0 for no/1 for yes)?");
+            System.out.print("Would you like to modify (0 for no/1 for yes)? ");
             try{
                 int userChoice = scan.nextInt();
-                if (userChoice == 1){//Yes
+                System.out.println();
+                if (userChoice == 1){ // Yes
                     Sausage finalSausage = Main.InputSausageFields();
                     this.ChangeSausage(a + 1, finalSausage);
-                } else {//No
+                } else { // No
                     continue;
                 }
             }
-            catch(Exception e){//Invalid is default
+            catch(Exception e){ // Invalid is default
                 continue;
             }
             System.out.println("Would you like to insert an entry before current (0 for no/1 for yes)?");
             try{
                 int userChoice = scan.nextInt();
-                if (userChoice == 1){//Yes
+                if (userChoice == 1){ // Yes
                     Sausage finalSausage = Main.InputSausageFields();
                     this.sausageArrayList.add(a, finalSausage);
                     a++;
-                } else {//No
+                } else { // No
                     continue;
                 }
             }
-            catch(Exception e){//Invalid is default
+            catch(Exception e){ // Invalid is default
                 continue;
             }
             System.out.println("\n");
@@ -243,6 +244,4 @@ public class SausagePackage{
             System.out.println("\n");
         }
     }
-
-
 }
