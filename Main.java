@@ -18,7 +18,6 @@ import dongwangxu.seven.Sausage;
 import dongwangxu.seven.SausagePackage;
 
 // Note: Moses implemented new shippingStatus field into all aspects
-// Note: arrayCapacity changing commented out due to java array limitations - Moses
 
 public class Main{
   
