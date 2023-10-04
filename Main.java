@@ -81,7 +81,7 @@ public class Main{
         }      
         option = scan.nextInt();
         // Validate number range
-        if (!((option >= 0)&&(option <= 7))){
+        if (!((option >= 0)&&(option <= 8))){
           System.out.print("Enter your Choice: ");          
           nNum = true;
         }else{
@@ -151,6 +151,7 @@ public class Main{
         System.out.print("\033\143");
         System.out.println("Sausages in Alignment With Diet\n");
         MainFilterDiet();
+        showMainMenu();
         break;
       //nicholas end
       // If 8, Special (Manual) Update - Moses
@@ -158,6 +159,8 @@ public class Main{
         System.out.print("\033\143");
         System.out.println("Sausages in Alignment With Diet\n");
         fullSausagePackage.manualSausageUpdate();
+        showMainMenu();
+        break;
       // If 0, terminate program - Lindsay
       case 0:
         System.out.print("\033\143");
@@ -559,32 +562,32 @@ public class Main{
       }      
     } while (dietBool); 
     switch (dietVal){
-        case 1:
-            for (Sausage sausage : sausageArray) {
-                if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
-                    System.out.println(sausage.toString());
-                }
-            }
-                
-        case 2:
-            for (Sausage sausage : sausageArray) {
-                if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
-                    System.out.println(sausage.toString());
-                }
-            }
-        case 3:
-            for (Sausage sausage : sausageArray) {
-                if ((sausage.getMeatType() == MeatType.vegan)) {
-                    System.out.println(sausage.toString());
-                }
-            }
-        case 4:
-            for (Sausage sausage : sausageArray) {
-                if ((sausage.getMeatType() == MeatType.vegan) || (sausage.getMeatType() == MeatType.fish)) {
-                    System.out.println(sausage.toString());
-                }
-            }
-        }
+      case 1:
+          for (Sausage sausage : sausageArray) {
+              if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
+                  System.out.println(sausage.toString());
+              }
+          }
+              
+      case 2:
+          for (Sausage sausage : sausageArray) {
+              if (!(sausage.getMeatType() == MeatType.pork) && !(sausage.getMeatType() == MeatType.mystery)) {
+                  System.out.println(sausage.toString());
+              }
+          }
+      case 3:
+          for (Sausage sausage : sausageArray) {
+              if ((sausage.getMeatType() == MeatType.vegan)) {
+                  System.out.println(sausage.toString());
+              }
+          }
+      case 4:
+          for (Sausage sausage : sausageArray) {
+              if ((sausage.getMeatType() == MeatType.vegan) || (sausage.getMeatType() == MeatType.fish)) {
+                  System.out.println(sausage.toString());
+              }
+          }
+      }
   }
   
 }
