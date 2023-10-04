@@ -204,10 +204,10 @@ public class SausagePackage{
         for (int a = 0; a < sausageArrayList.size(); a++){
             System.out.println("Sausage " + (a + 1) + ": ");
             System.out.println(sausageArrayList.get(a).toString());
-            System.out.println("Would you like to modify (y/n)?");
+            System.out.println("Would you like to modify (0 for no/1 for yes)?");
             try{
-                var userChoice = scan.next();
-                if ((userChoice == "y")||(userChoice == "Y")){//Yes
+                int userChoice = scan.nextInt();
+                if (userChoice == 1){//Yes
                     Sausage finalSausage = Main.InputSausageFields();
                     this.ChangeSausage(a + 1, finalSausage);
                 } else {//No
@@ -217,12 +217,13 @@ public class SausagePackage{
             catch(Exception e){//Invalid is default
                 continue;
             }
-            System.out.println("Would you like to insert an entry before (y/n)?");
+            System.out.println("Would you like to insert an entry before current (0 for no/1 for yes)?");
             try{
-                var userChoice = scan.next();
-                if ((userChoice == "y")||(userChoice == "Y")){//Yes
+                int userChoice = scan.nextInt();
+                if (userChoice == 1){//Yes
                     Sausage finalSausage = Main.InputSausageFields();
                     this.sausageArrayList.add(a, finalSausage);
+                    a++;
                 } else {//No
                     continue;
                 }
